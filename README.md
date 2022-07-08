@@ -1,1 +1,1 @@
-# Mediicine Blockchain Ledger
+# Medicine Blockchain Ledger
