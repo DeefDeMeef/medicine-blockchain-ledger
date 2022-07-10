@@ -79,7 +79,7 @@ class EggTrackingContract extends Contract {
     let medicine = new Medicine(doctorId, medicineId, medicineName, quantity);
 
     // add key to help users finding object
-    let key = medicine.getDoctorId() + ":" + medicine.getMedicineId() + ":" + medicine.getMedicineName();
+    let key = medicine.getType() + ":" + medicine.getDoctorId() + ":" + medicine.getMedicineId() + ":" + medicine.getMedicineName();
 
     medicine.medcineBoxId = key;
 
@@ -89,7 +89,7 @@ class EggTrackingContract extends Contract {
     // create a packedEggs event
     const event = {
       eventName: "createMedicine",
-      targetAudience: [medicine.getDoctorId()], // suggested targetAudience
+      targetAudience: [identity], // suggested targetAudience
       medcineBoxId: medicine.medcineBoxId,
     };
 
@@ -187,7 +187,17 @@ class EggTrackingContract extends Contract {
     return JSON.stringify(shipment);
   }
 
-  async createPrescription(ctx, timestamp, medicineId, quantity, expiration, patientId, doctorId, hospitalId, pharmacyId) {
+  async createPrescription(
+    ctx,
+    timestamp,
+    medicineId,
+    quantity,
+    expiration,
+    patientId,
+    doctorId,
+    hospitalId,
+    pharmacyId
+  ) {
     let identity = ctx.clientIdentity;
     console.log("id: ", identity);
     // if (!this.isDoctor(identity) && !this.isAdmin(identity)) {
@@ -207,11 +217,7 @@ class EggTrackingContract extends Contract {
 
     // generate the key for the egg shipment
     let key =
-      prescription.getTimestamp() +
-      ":" +
-      prescription.getMedicineId() +
-      ":" +
-      prescription.getPatientId();
+      prescription.getType() + ":" + prescription.getMedicineId() + ":" + prescription.getPatientId();
 
     // check if the shipment already exists in the ledger
     let prescriptionExists = await this.assetExists(ctx, key);
@@ -224,7 +230,7 @@ class EggTrackingContract extends Contract {
     prescription.prescriptionId = key;
 
     // update state with new shipment
-    // await ctx.stub.putState(key, prescription.serialise());
+    await ctx.stub.putState(key, prescription.serialise());
 
     // create a shipmentCreated event
     const event = {
@@ -500,14 +506,14 @@ class EggTrackingContract extends Contract {
     }
 
     // get object from key-pair
-    const eggBox = EggBox.deserialise(buffer);
+    const eggBox = Prescription.deserialise(buffer);
 
     // should not be already damaged
-    if (eggBox.isDamaged()) {
-      throw new Error(`EggBox with ID ${eggBoxId} is already damaged`);
-    }
+    // if (eggBox.isDamaged()) {
+    //   throw new Error(`EggBox with ID ${eggBoxId} is already damaged`);
+    // }
 
-    eggBox.setDamaged();
+    eggBox.setPickedUp();
 
     // update world state
     await ctx.stub.putState(eggBoxId, eggBox.serialise());
@@ -578,8 +584,41 @@ class EggTrackingContract extends Contract {
     // filtering only eggboxes that are in possession or are originated from id
     let queryString = {
       selector: {
-        type: "EggBox",
-        $or: [{ originId: id }, { holderId: id }],
+        type: "Prescription",
+        $or: [{ patientId: id }, { doctorId: id }],
+      },
+    };
+
+    let resultsIterator = await ctx.stub.getQueryResult(JSON.stringify(queryString));
+
+    let allResults = [],
+      count = 0;
+
+    while (true) {
+      let res = await resultsIterator.next();
+      if (res.value && res.value.value.toString()) {
+        let jsonRes = {};
+        jsonRes.key = res.value.key;
+        jsonRes.record = JSON.parse(res.value.value.toString("utf8"));
+        allResults.push(jsonRes);
+      }
+
+      if (res.done) {
+        await resultsIterator.close();
+        break;
+      }
+    }
+    return JSON.stringify(allResults);
+  }
+
+  async queryPrescriptions(ctx, id) {
+    // filtering only eggboxes that are in possession or are originated from id
+    console.log("this is ctx: ", ctx)
+
+    let queryString = {
+      selector: {
+        type: "Prescription",
+        $or: [{ doctorId: id }, { patientId: id }],
       },
     };
 

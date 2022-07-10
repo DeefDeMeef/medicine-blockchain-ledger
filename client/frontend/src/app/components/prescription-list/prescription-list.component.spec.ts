@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EggboxListComponent } from './eggbox-list.component';
+import { PrescriptionRecordComponent } from "./prescription-list.component";
 
-describe('EggboxListComponent', () => {
-  let component: EggboxListComponent;
-  let fixture: ComponentFixture<EggboxListComponent>;
+describe('PrescriptionRecordComponent', () => {
+  let component: PrescriptionRecordComponent;
+  let fixture: ComponentFixture<PrescriptionRecordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EggboxListComponent ]
+      declarations: [ PrescriptionRecordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EggboxListComponent);
+    fixture = TestBed.createComponent(PrescriptionRecordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

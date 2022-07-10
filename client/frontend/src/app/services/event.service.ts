@@ -22,7 +22,7 @@ export class EventService {
       () => console.log('complete') // Called when connection is closed (for whatever reason).
     );
 
-    let message = { id: id, events: ["packedEggs","shipmentCreated","boxesLoaded","boxesDelivered"]};
+    let message = { id: id, events: ["packedEggs", "createMedicine", "shipmentCreated","boxesLoaded","boxesDelivered", ]};
     console.log(message);
     this.subject.next(message);
 
