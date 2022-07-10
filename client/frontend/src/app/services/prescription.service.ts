@@ -6,11 +6,11 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EggboxService {
+export class PrescriptionService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  getEggBoxes() {
+  getPrescriptions() {
 
     const currentUser = this.authService.currentUser;
     console.log(currentUser)

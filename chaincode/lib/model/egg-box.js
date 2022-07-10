@@ -12,7 +12,7 @@ const State = require('./state.js');
 
 class EggBox extends State {
   constructor(originId, packingTimestamp, quantity) {
-    super("EggBox");
+    super("test");
     this.setOriginId(originId);
     this.setPackingTimestamp(packingTimestamp);
     // this.setMedicineId(medicineId);

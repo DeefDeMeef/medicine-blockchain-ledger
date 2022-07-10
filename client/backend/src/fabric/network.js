@@ -170,15 +170,13 @@ exports.query = async function (networkObj, id, query) {
     }
 };
 
-exports.packEggs = async function (networkObj, farmerId, packingTimestamp, medicineId, medicineName, quantity) {
+exports.packEggs = async function (networkObj, farmerId, packingTimestamp, quantity) {
     try {
 
         let response = await networkObj.contract.submitTransaction(
           "packEggs",
           farmerId,
           packingTimestamp,
-          medicineId,
-          medicineName,
           quantity
         );
         await networkObj.gateway.disconnect();
@@ -193,8 +191,6 @@ exports.packEggs = async function (
   networkObj,
   farmerId,
   packingTimestamp,
-  medicineId,
-  medicineName,
   quantity
 ) {
   try {
@@ -202,8 +198,6 @@ exports.packEggs = async function (
       "packEggs",
       farmerId,
       packingTimestamp,
-      medicineId,
-      medicineName,
       quantity
     );
     await networkObj.gateway.disconnect();

@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { EggboxListComponent } from './components/eggbox-list/eggbox-list.component';
+import { PrescriptionRecordComponent } from "./components/prescription-list/prescription-list.component";
 import { ShipmentListComponent } from './components/shipment-list/shipment-list.component';
 import { ShipmentDetailsComponent } from './components/shipment-details/shipment-details.component';
 import { LoginCallbackComponent } from './components/login-callback/login-callback.component';
@@ -22,20 +22,13 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     SignUpComponent,
     LoginComponent,
     HomeComponent,
-    EggboxListComponent,
+    PrescriptionRecordComponent,
     ShipmentListComponent,
     ShipmentDetailsComponent,
-    LoginCallbackComponent
+    LoginCallbackComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
