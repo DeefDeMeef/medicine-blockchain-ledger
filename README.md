@@ -4,11 +4,15 @@ This is a blockchain-based client application to fight against the medicines bla
 ![](https://imgur.com/X4QACuJ.png)
 
 ## 🚀 Fast travel
-1. [Install App](#install-app)
-2. [Install Database](#install-database)
-3. [Oude repo](#oude-repo)
-4. [Dependencies](#dependencies)
-5. [License](#license)
+1. [🛠 Forging the fabric network](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-forging-the-fabric-network)
+2. [🎬 Part 1: before we start](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-1-before-we-start)
+3. [🏎 Part 2: Starting up the engine](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-2-starting-up-the-engine)
+4. [✍🏼 Part 3: OAuth2.0 configuaration](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-3-oauth20-configuaration)
+5. [📦 Part 4: Install dependencies](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-4-install-dependencies)
+6. [👽 Part 5: Adding the first user to the wallet](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-5-adding-the-first-user-to-the-wallet)
+7. [🔮 Part 6: See the magic work](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-6-see-the-magic-work)
+8. [📧 Part 7: Use the API to interact with the blockchain](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-part-7-use-the-api-to-interact-with-the-blockchain)
+9. [🪪 License](https://github.com/DeefDeMeef/medicine-blockchain-ledger#-license)
 
 
 ## 🛠 Forging the fabric network
