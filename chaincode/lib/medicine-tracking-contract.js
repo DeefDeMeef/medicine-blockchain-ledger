@@ -146,7 +146,7 @@ class MedicineTrackingContract extends Contract {
     }
 
     prescription.setPickedUp();
-    prescription.setPharmacyId(ctx.clientIdentity);
+    prescription.setPharmacyId("Boogaard");
 
     // update world state
     await ctx.stub.putState(prescriptionId, prescription.serialise());
