@@ -99,37 +99,6 @@ app.post('/rest/participants/auth', async (req, res) => {
     }
 });
 
-/**
- * queryEggs
- * An authentication token is mandatory
- * 
- */
-app.get('/rest/participants/:participantId/eggboxes', async (req, res) => {
-
-    const validToken = await network.validateToken(req,oAuth2Client,OAuth2Data);
-
-    if(!validToken) {
-        res.status(401).json({ message: 'invalid token'} );
-        return;
-    }
-
-    let networkObj = await network.connectToNetwork(req.params.participantId);
-
-    if (networkObj.error) {
-        res.status(400).json({ message: networkObj.error });
-        return;
-    }
-
-    let invokeResponse = await network.query(networkObj, req.params.participantId, 'queryEggs');
-
-    if (invokeResponse.error) {
-        res.status(400).json({ message: invokeResponse.error });
-    } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(invokeResponse);
-    }
-});
-
 // prescriptions ophalen voor een specifieke patient
 app.get("/rest/participants/:participantId/prescriptions", async (req, res) => {
   const validToken = await network.validateToken(req, oAuth2Client, OAuth2Data);
@@ -156,37 +125,6 @@ app.get("/rest/participants/:participantId/prescriptions", async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(invokeResponse);
   }
-});
-
-/**
- * queryShipments
- * An authentication token is mandatory
- * 
- */
-app.get('/rest/participants/:participantId/shipments', async (req, res) => {
-
-    const validToken = await network.validateToken(req,oAuth2Client,OAuth2Data);
-
-    if(!validToken) {
-        res.status(401).json({ message: 'invalid token'} );
-        return;
-    }
-
-    let networkObj = await network.connectToNetwork(req.params.participantId);
-
-    if (networkObj.error) {
-        res.status(400).json({ message: networkObj.error });
-        return;
-    }
-
-    let invokeResponse = await network.query(networkObj, req.params.participantId, 'queryShipments');
-
-    if (invokeResponse.error) {
-        res.status(400).json({ message: invokeResponse.error });
-    } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(invokeResponse);
-    }
 });
 
 app.post("/rest/medicineboxes", async (req, res) => {
@@ -259,7 +197,7 @@ app.post("/rest/prescription", async (req, res) => {
  *
  * {"participantId":"F1"}
  */
-app.put('/rest/eggboxes/:eggBoxId/damaged', async (req, res) => {
+app.put('/rest/eggboxes/:precriptionId/damaged', async (req, res) => {
 
     const validToken = await network.validateToken(req,oAuth2Client,OAuth2Data);
 
@@ -274,7 +212,7 @@ app.put('/rest/eggboxes/:eggBoxId/damaged', async (req, res) => {
         res.status(400).json({ message: networkObj.error });
     }
 
-    let invokeResponse = await network.reportDamage(networkObj, req.params.eggBoxId);
+    let invokeResponse = await network.reportPickedUp(networkObj, req.params.precriptionId);
 
     if (invokeResponse.error) {
         res.status(400).json({ message: invokeResponse.error });

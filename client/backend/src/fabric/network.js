@@ -287,16 +287,15 @@ exports.deliverBoxes = async function (networkObj, shipmentId, deliveryDate) {
     }
 };
 
-exports.reportDamage = async function (networkObj, eggBoxId) {
-    try {
-
-        let response = await networkObj.contract.submitTransaction('reportDamage', eggBoxId);
-        await networkObj.gateway.disconnect();
-        return response.toString();
-    } catch (error) {
-        let response = { error: 'the following errors ocurred: ' + error.message? error.message : error};
-        return response;
-    }
+exports.reportPickedUp = async function (networkObj, prescriptionId) {
+  try {
+    let response = await networkObj.contract.submitTransaction("reportPickedUp", prescriptionId);
+    await networkObj.gateway.disconnect();
+    return response.toString();
+  } catch (error) {
+    let response = { error: "the following errors ocurred: " + error.message ? error.message : error };
+    return response;
+  }
 };
 
 exports.validateToken = async function (req,oAuth2Client,OAuth2Data) {

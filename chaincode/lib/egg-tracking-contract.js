@@ -496,27 +496,27 @@ class EggTrackingContract extends Contract {
    * @returns none
    */
 
-  async reportDamage(ctx, eggBoxId) {
+  async reportPickedUp(ctx, prescriptionId) {
     // Get eggbox from the keystore
-    const buffer = await ctx.stub.getState(eggBoxId);
+    const buffer = await ctx.stub.getState(prescriptionId);
 
     // if eggbox was not found
     if (!buffer || buffer.length == 0) {
-      throw new Error(`EggBox with ID ${eggBoxId} not found`);
+      throw new Error(`EggBox with ID ${prescriptionId} not found`);
     }
 
     // get object from key-pair
-    const eggBox = Prescription.deserialise(buffer);
+    const prescription = Prescription.deserialise(buffer);
 
     // should not be already damaged
-    // if (eggBox.isDamaged()) {
-    //   throw new Error(`EggBox with ID ${eggBoxId} is already damaged`);
-    // }
+    if (prescription.isPickedUp()) {
+      throw new Error(`prescription with ID ${prescriptionId} is already pickde up`);
+    }
 
-    eggBox.setPickedUp();
+    prescription.setPickedUp();
 
     // update world state
-    await ctx.stub.putState(eggBoxId, eggBox.serialise());
+    await ctx.stub.putState(prescriptionId, prescription.serialise());
 
     return "ok";
   }
