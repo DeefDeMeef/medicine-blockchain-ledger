@@ -68,10 +68,7 @@ app.post('/rest/participants', async (req, res) => {
 });
 
 /**
- * Pack eggs
- * An authentication token is mandatory
- * 
- * {"farmerId":"F1","packingTimestamp":"20191124141755","quantity":"30"}
+ * An authentication
  */
 app.post('/rest/participants/auth', async (req, res) => {
 
@@ -179,8 +176,7 @@ app.post("/rest/prescription", async (req, res) => {
     req.body.expiration,
     req.body.patientId,
     req.body.doctorId,
-    req.body.hospitalId,
-    req.body.pharmacyId
+    req.body.hospitalId
     );
 
   if (invokeResponse.error) {

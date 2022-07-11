@@ -5,16 +5,14 @@ import { TouchSequence } from 'selenium-webdriver';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"],
 })
 export class NavbarComponent implements OnInit {
+  constructor(private eventService: EventService, private authService: AuthService, private router: Router) {}
 
-  constructor(private eventService: EventService, private authService: AuthService, private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   isLoggedIn() {
     return this.authService.currentUser != null;
@@ -24,9 +22,12 @@ export class NavbarComponent implements OnInit {
     return this.authService.currentUser.id;
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+  get role() {
+    return this.authService.currentUser.role;
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/"]);
+  }
 }

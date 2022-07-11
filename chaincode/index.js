@@ -1,5 +1,5 @@
 'use scrict';
 
-const EggTrackingContract = require('./lib/egg-tracking-contract.js');
+const MedicineTrackingContract = require('./lib/medicine-tracking-contract.js');
 
-module.exports.contracts = [EggTrackingContract];
+module.exports.contracts = [MedicineTrackingContract];

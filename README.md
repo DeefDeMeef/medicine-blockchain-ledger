@@ -1,9 +1,9 @@
 # Medicine Blockchain Ledger
 This blockchain application is an...Deze app is gemaakt als project voor Blok Tech. Hierbij was het de bedoeling om een dynamische webapp te maken met gebruik van Node.js, Express en MongoDB. Deze app is gemaakt voor mensen die opzoek zijn naar gym buddies. Dit kan zijn om mee te sporten of om meer ervaring op te doen.
 
-![](https://user-images.githubusercontent.com/32453774/110261606-2fa1bd80-7fb1-11eb-887c-4e8dcbd1436b.png)
+![](https://imgur.com/X4QACuJ.png)
 
-## Content
+## 🚀 Fast travel
 1. [Install App](#install-app)
 2. [Install Database](#install-database)
 3. [Oude repo](#oude-repo)
@@ -11,7 +11,7 @@ This blockchain application is an...Deze app is gemaakt als project voor Blok Te
 5. [License](#license)
 
 
-## Install App
+## 🛠 Install App
 ### Stap 1
 Installeer git
 ```
@@ -104,11 +104,7 @@ Database connection succesfull
 []
 ```
 
-## Oude repo
-Door problemen met de oude repo, ben ik een nieuwe repo gestart. Voor alle oude commits bekijk:
-[Blok_Tech Repo](https://github.com/Mentalyzd/Blok_Tech)
-
-## Dependencies
+## 📦 Dependencies
 In dit project heb ik de volgende **NPM** packages gebruikt: 
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 * [body-parser](https://www.npmjs.com/package/body-parser-json)
@@ -121,5 +117,5 @@ In dit project heb ik de volgende **NPM** packages gebruikt:
 * [node](https://www.npmjs.com/package/node)
 * **(Dev-dependency)** [nodemon](https://www.npmjs.com/package/nodemon)
 
-## License
-[MIT](https://github.com/Mentalyzd/Fitbud/blob/main/LICENSE) © [Christiaan Zandbergen](https://github.com/Mentalyzd)
+## 🪪 License
+[MIT](joe)

@@ -121,14 +121,14 @@ exports.connectToNetwork = async function (userName) {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract we have installed on the peer
-        const contract = await network.getContract('egg-tracking');
+        const contract = await network.getContract('medicine-tracking');
         
         let networkObj = {
             contract: contract,
             network: network,
             gateway: gateway
         };
-
+      
         return networkObj;
 
     } catch (error) {
@@ -170,63 +170,7 @@ exports.query = async function (networkObj, id, query) {
     }
 };
 
-exports.packEggs = async function (networkObj, farmerId, packingTimestamp, quantity) {
-    try {
-
-        let response = await networkObj.contract.submitTransaction(
-          "packEggs",
-          farmerId,
-          packingTimestamp,
-          quantity
-        );
-        await networkObj.gateway.disconnect();
-        return response.toString();
-    } catch (error) {
-        let response = { error: 'the following errors ocurred: ' + error.message? error.message : error};
-        return response;
-    }
-};
-
-exports.packEggs = async function (
-  networkObj,
-  farmerId,
-  packingTimestamp,
-  quantity
-) {
-  try {
-    let response = await networkObj.contract.submitTransaction(
-      "packEggs",
-      farmerId,
-      packingTimestamp,
-      quantity
-    );
-    await networkObj.gateway.disconnect();
-    return response.toString();
-  } catch (error) {
-    let response = { error: "the following errors ocurred: " + error.message ? error.message : error };
-    return response;
-  }
-};
-
-exports.medicine = async function (networkObj, doctorId, medicineId, medicineName, quantity) {
-    try {
-
-        let response = await networkObj.contract.submitTransaction(
-          "createMedicine",
-          doctorId,
-          medicineId,
-          medicineName,
-          quantity
-        );
-        await networkObj.gateway.disconnect();
-        return response.toString();
-    } catch (error) {
-        let response = { error: 'the following errors ocurred: ' + error.message? error.message : error};
-        return response;
-    }
-};
-
-exports.prescription = async function (networkObj, timestamp, medicineId, quantity, expiration, patientId, doctorId, hospitalId, pharmacyId) {
+exports.prescription = async function (networkObj, timestamp, medicineId, quantity, expiration, patientId, doctorId, hospitalId) {
   try {
     let response = await networkObj.contract.submitTransaction(
       "createPrescription",
@@ -236,8 +180,7 @@ exports.prescription = async function (networkObj, timestamp, medicineId, quanti
       expiration,
       patientId,
       doctorId,
-      hospitalId,
-      pharmacyId
+      hospitalId
     );
     await networkObj.gateway.disconnect();
     return response.toString();
@@ -245,18 +188,6 @@ exports.prescription = async function (networkObj, timestamp, medicineId, quanti
     let response = { error: "the following errors ocurred: " + error.message ? error.message : error };
     return response;
   }
-};
-
-exports.loadBoxes = async function (networkObj, shipmentId, loadTimestamp) {
-    try {
-
-        let response = await networkObj.contract.submitTransaction('loadBoxes', shipmentId, loadTimestamp);
-        await networkObj.gateway.disconnect();
-        return response.toString();
-    } catch (error) {
-        let response = { error: 'the following errors ocurred: ' + error.message? error.message : error};
-        return response;
-    }
 };
 
 exports.getParticipant = async function (networkObj, participantId) {
@@ -271,18 +202,6 @@ exports.getParticipant = async function (networkObj, participantId) {
         for (var key in error) {
             response.error += key + ' - ' + error[key];
         }
-        return response;
-    }
-};
-
-exports.deliverBoxes = async function (networkObj, shipmentId, deliveryDate) {
-    try {
-
-        let response = await networkObj.contract.submitTransaction('deliverBoxes', shipmentId, deliveryDate);
-        await networkObj.gateway.disconnect();
-        return response.toString();
-    } catch (error) {
-        let response = { error: 'the following errors ocurred: ' + error.message? error.message : error};
         return response;
     }
 };

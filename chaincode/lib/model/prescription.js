@@ -23,7 +23,7 @@ class Prescription extends State {
     this.setPatientId(patientId);
     this.setDoctorId(doctorId);
     this.setHospitalId(hospitalId);
-    this.setPharmacyId(pharmacyId);
+    this.setPharmacyId("null");
     this.setReadyForPickup();
   }
 
