@@ -1,5 +1,5 @@
 # Medicine Blockchain Ledger
-This blockchain application is an...Deze app is gemaakt als project voor Blok Tech. Hierbij was het de bedoeling om een dynamische webapp te maken met gebruik van Node.js, Express en MongoDB. Deze app is gemaakt voor mensen die opzoek zijn naar gym buddies. Dit kan zijn om mee te sporten of om meer ervaring op te doen.
+This is a blockchain-based client application to fight against the medicines black market. To read our report follow this [link]()
 
 ![](https://imgur.com/X4QACuJ.png)
 
